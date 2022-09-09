@@ -1,21 +1,37 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
-        },
-        "error": {
-            "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
-            "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-            "unknown": "[%key:common::config_flow::error::unknown%]"
-        },
-        "step": {
-            "user": {
-                "data": {
-                    "host": "[%key:common::config_flow::data::host%]",
-                    "password": "[%key:common::config_flow::data::password%]",
-                    "username": "[%key:common::config_flow::data::username%]"
-                }
-            }
+  "config": {
+    "step": {
+      "user": {
+        "title": "Min Renovasjon address information",
+        "description": "Enter your address information.",
+        "data": {
+          "street_name": "Street name",
+          "street_code": "Street code",
+          "house_no": "House no",
+          "county_id": "County Id",
+          "date_format": "Date format"
         }
-   }
+      }
+    },
+    "error": {
+      "unknown": "Unknown error occured.",
+      "municipality_not_customer": "**s** is not a customer of Min Renovasjon!",
+      "no_address_found": "No address found for search string **s**.",
+      "multiple_addresses_found": "**i** addresses found. Only one address should be returned. Please narrow your search."
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Min Renovasjon fractions",
+        "description": "Select fractions from which sensors are to be made.",
+        "data": {
+          "fraction_ids": "Fractions"
+        }
+      }
+    }
+  }
 }
