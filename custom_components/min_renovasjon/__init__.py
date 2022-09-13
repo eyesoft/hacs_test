@@ -28,9 +28,34 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
+CONFIG_SCHEMA = vol.Schema({
+    DOMAIN: vol.Schema({
+        vol.Required(CONF_STREET_NAME): cv.string,
+        vol.Required(CONF_STREET_CODE): cv.string,
+        vol.Required(CONF_HOUSE_NO): cv.string,
+        vol.Required(CONF_COUNTY_ID): cv.string,
+        vol.Optional(CONF_DATE_FORMAT, default=DEFAULT_DATE_FORMAT): cv.string,
+    })
+}, extra=vol.ALLOW_EXTRA)
+
 async def async_setup(hass: HomeAssistant, config: dict):
     if DOMAIN not in config:
         return True
+        
+    hass.data.setdefault(DOMAIN, {})
+    hass.data[DOMAIN]["calendar_list"] = None
+    
+    street_name = config[DOMAIN][CONF_STREET_NAME]
+    street_code = config[DOMAIN][CONF_STREET_CODE]
+    house_no = config[DOMAIN][CONF_HOUSE_NO]
+    county_id = config[DOMAIN][CONF_COUNTY_ID]
+    #date_format = config[DOMAIN][CONF_DATE_FORMAT]
+    date_format = None
+    min_renovasjon = MinRenovasjon(hass, street_name, street_code, house_no, county_id, date_format)
+
+    hass.data[DOMAIN]["data"] = min_renovasjon
+
+    return True
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
 
