@@ -15,12 +15,9 @@
     },
     "error": {
       "unknown": "Unknown error occured.",
-      "municipality_not_customer": "**s** is not a customer of Min Renovasjon!",
-      "no_address_found": "No address found for search string **s**.",
-      "multiple_addresses_found": "**i** addresses found. Only one address should be returned. Please narrow your search."
-    },
-    "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+      "municipality_not_customer": "Selected municipality is not a customer of Min Renovasjon!",
+      "no_address_found": "No address found.",
+      "multiple_addresses_found": "More than one addresses found. Only one address should be returned. Please narrow your search."
     }
   },
   "options": {
